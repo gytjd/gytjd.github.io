@@ -29,11 +29,11 @@ html {
 }
 
 body {
+  line-height: 1.75rem;
   background: var(--body-bg);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   font-family: 'Source Sans Pro', 'Microsoft Yahei', sans-serif;
-  line-height: 1.75;
 }
 
 /* --- Typography --- */
@@ -76,6 +76,14 @@ h5 {
   font-size: 1.1rem;
 }
 
+ol,
+ul {
+  ol,
+  ul {
+    margin-bottom: 1rem;
+  }
+}
+
 a {
   @extend %link-color;
 }
@@ -94,22 +102,18 @@ blockquote {
     display: flex;
     border-left: 0;
     border-radius: 6px;
-    padding: 1rem;
+    padding: 0.75rem 1.2rem;
     color: var(--prompt-text-color);
 
     &::before {
+      margin-right: 1rem;
       font-family: "Font Awesome 5 Free";
       text-align: center;
       width: 1.25rem;
-      margin-right: 0.75rem;
     }
 
-    > div {
-      max-width: calc(100% - 2rem);
-
-      > :last-child {
-        margin-bottom: 0;
-      }
+    p:last-child {
+      margin-bottom: 0rem;
     }
   }
 
@@ -444,8 +448,10 @@ img[data-src] {
 
 .post-content {
   font-size: 1.08rem;
+  line-height: 1.8;
   margin-top: 2rem;
   overflow-wrap: break-word;
+  word-wrap: break-word;
 
   a {
     &:not(.img-link) {
@@ -462,29 +468,13 @@ img[data-src] {
 
   }
 
-  > ol,
-  > ul {
-    padding-inline-start: 1.75rem;
-
-    li {
-      margin: 0.25rem 0;
-      padding-left: 0.4rem;
-    }
-
-    ol,
-    ul {
-      padding-inline-start: 1.25rem;
-      margin: 0.5rem 0;
-    }
-  }
-
   ul {
     /* attribute 'hide-bullet' was added by liquid */
     .task-list-item[hide-bullet] {
       list-style-type: none;
 
       > i { /* checkbox icon */
-        margin: 0 0.5rem 0.2rem -1.4rem;
+        margin: 0 0.4rem 0.2rem -1.4rem;
         vertical-align: middle;
         color: var(--checkbox-color);
 
@@ -501,6 +491,26 @@ img[data-src] {
     }
 
   } /* ul */
+
+  > ol,
+  > ul {
+    padding-left: 2rem;
+
+    li {
+      ol,
+      ul { /* sub list */
+        padding-left: 2rem;
+        margin-top: 0.3rem;
+      }
+    }
+
+  }
+
+  > ol {
+    li {
+      padding-left: 0.25em;
+    }
+  }
 
   dl > dd {
     margin-left: 1rem;
@@ -633,7 +643,9 @@ $sidebar-display: "sidebar-display";
   overflow-y: auto;
   width: $sidebar-width;
   z-index: 99;
-  background: var(--sidebar-bg);
+  background: url('/assets/img/background.jpeg');
+  background-size: 100% 100%;
+  background-position: center;
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   &::-webkit-scrollbar {
@@ -1048,10 +1060,6 @@ $sidebar-display: "sidebar-display";
       @extend %no-bottom-border;
     }
   }
-
-  @at-root .row:only-child > #{&} {
-    padding-bottom: 3rem;
-  }
 }
 
 #mask {
@@ -1203,11 +1211,8 @@ $sidebar-display: "sidebar-display";
 
     .post-content {
       > blockquote[class^=prompt-] {
-        @include pl-pr(1.25rem);
         @include ml-mr(-1.25rem);
-
         border-radius: 0;
-        max-width: none;
       }
     }
 
